@@ -1,4 +1,4 @@
-// mes variables
+// characters and number variables
 var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 var upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -9,10 +9,9 @@ var specialCharacters = [' ', '!', '"', '#', '$', '%', '&', '(', ')', '*', '+', 
 
 
 
-// ma fonction qui cree le password
-function generatePassword() {
+// function that generates password length
+function generatePasswordLength() {
 
-// length of password code
   var passwordLength = 0; 
 
   while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
@@ -35,18 +34,26 @@ function generatePassword() {
 }
 
 
+// function that concatenate characters and generates password 
+  var lowerCase = confirm("Would you like your password to contain lowercase letters?");
+  var upperCase = confirm("Would you like your password to contain uppercase letters?");
+  var numeric = confirm("Would you like your password to contain numbers?");
+  var specialCharacters = confirm("Lastly, would you like your password to contain special characters?");
 
 
 
 
 
 
-// character type code
 
 
 
+// function that generates password
+function generatePassword() {
 
+  var passLength = passwordLength();
 
+}
 
 
 
