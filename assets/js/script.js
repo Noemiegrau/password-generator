@@ -12,7 +12,7 @@ function findPasswordLength () {
 
   var passwordLength = 0; 
 
-  // keep asking the length question until the answer is a number between 8 and 128 included
+  // keep asking the user to choose a length until the answer is a number between 8 and 128 included
   while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     passwordLength = 0;
     passwordLength = parseInt(prompt("How long would you like your password to be? Please enter a number between 8 and 128 characters included."));
@@ -38,14 +38,14 @@ function generatePassword() {
   var passwordLength = findPasswordLength();
   // console.log(passwordLength);
 
-  var islowerCase = confirm("Click ok to confirm that password includes lower case");
-  var isupperCase = confirm("Click ok to confirm that password includes upper case");
-  var isNumeric = confirm("Click ok to confirm that password includes numerics");
-  var isSymbol= confirm("Click ok to confirm that password includes symbols ");
+  var islowerCase = confirm("Would you like your password to contain lowercase letters?");
+  var isupperCase = confirm("Would you like your password to contain uppercase letters?");
+  var isNumeric = confirm("Would you like your password to contain numbers?");
+  var isSymbol= confirm("Lastly, would you like your password to contain special characters?");
 
   // if case user don't select any character type
   if (islowerCase === false && isupperCase === false && isNumeric === false && isSymbol === false) {
-    allChar = alert("select at least one criteria");
+    allChar = alert("No password can not be generated if you don't choose to include at least 1 type of characters. Please try again.");
     // if nothing choosen, return to the beginning of the function to start again
     return generatePassword();
 
