@@ -1,146 +1,18 @@
-// characters and number variables
-var lowerCase = 'abcdefghijklmnopqrstuvwxyz';
-var upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var numeric = '0123456789';
-var symbol = '!#$%&()*+,-./:;<=>?@[_^`{|}~]';
+// arrays of characters 
+var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var numeric = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var symbol = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "_", "^", "`", "{", "|", "}", "~", "]"];
 
+// characters chosen by the user
+var allChar = [];
 
-//var allChar = [];
-//var password = '';
-//var passwordText = document.querySelector ("#password");
-// Get references to the #generate element
-//var generateBtn = document.querySelector("#generate");
-
-
-function findPasswordOptions() {
-  var length = parseInt(
-    prompt("How long?")
-  );
-
-  if (isNaN(length) === true) {
-    alert("please provide a number");
-    return;
-  }
-
-  if(length<8) {
-    alert("password length...")
-    return;
-  }
-  if(length>128) {
-    alert("password length...")
-    return;
-  }
-
-  console.log(length);
-
-  var islowerCase = confirm("Click ok to confirm that password includes lower case");
-  var isupperCase = confirm("Click ok to confirm that password includes upper case");
-  var isNumeric = confirm("Click ok to confirm that password includes numerics");
-  var isSymbol= confirm("Click ok to confirm that password includes symbols ");
-
-  // the differences between == and ===. The == does not check for type, is not a strcit operator. The === will check value and the type. The = is used to define information/ values/ etc.  
-  if (
-    islowerCase === false &&
-    isupperCase === false &&
-    isNumeric === false && 
-    isSymbol === false
-  ) {
-  alert("select at least one criteria")
-  return;
-  }
-
-  //console.log(islowerCase);
-  //console.log(isupperCase);
-  //console.log(isNumeric);
-  //console.log(isSymbol);
-
-  // an example of an object below :) 
-  //var object = {
-  //  key: "value pairs",
-  // key: "value pairs",
-  //}
-
-  var passwordObject = {
-    length: length,
-    islowerCase: islowerCase,
-    isupperCase: isupperCase,
-    isSymbol: isSymbol,
-    isNumeric: isNumeric
-  };
-
-  return passwordObject;
-}
-
-
-function getRandomElement(arr) {
-  var random = Math.floor(Math.random() * arr.length);
-  var randomElement = arr[random];
-
-  return randomElement;
-}
-
-
-function createPassword() {
-  var allChar = findPasswordOptions();
-  var final = [];
-  var possibleChar = [];
-  var confirmedChar = [];
-
-
-  if(allChar.islowerCase) {
-    possibleChar = possibleChar.concat(lowerCase);
-    confirmedChar.push(getRandomElement(lowerCase));
-  }
-
-  if(allChar.isupperCase) {
-    possibleChar = possibleChar.concat(upperCase);
-    confirmedChar.push(getRandomElement(upperCase));
-  }
-
-  if(allChar.isNumeric) {
-    possibleChar = possibleChar.concat(numeric);
-    confirmedChar.push(getRandomElement(numeric));
-  }
-
-  if(allChar.isSymbol) {
-    possibleChar = possibleChar.concat(symbol);
-    confirmedChar.push(getRandomElement(symbol));
-  }
-
-  console.log();
-
-  // need some kind of a for loop to go over the password length from the allChar
-  for ( var i = 0; i < allChar; i++) {
-  var possibleChar = getRandomElement(possibleChar);
-  final.push(possibleChar)
-  }
-  return final;
-}
-
-//console.log(final);
-
-//Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-  var password = createPassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
-/*function findPasswordLength () {
-
-  // var passwordText = document.querySelector ("#password");
+// function that generates the password length
+function findPasswordLength () {
 
   var passwordLength = 0; 
 
+  // keep asking the length question until the answer is a number between 8 and 128 included
   while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     passwordLength = 0;
     passwordLength = parseInt(prompt("How long would you like your password to be? Please enter a number between 8 and 128 characters included."));
@@ -161,109 +33,110 @@ generateBtn.addEventListener("click", writePassword);
    return passwordLength;
 }
 
-
+// function that generates a random password
 function generatePassword() {
   var passwordLength = findPasswordLength();
-  console.log(passwordLength);
+  // console.log(passwordLength);
 
-  // function that adds lowerCase
-  function lowerCase() {
-  var lowerCase = confirm("Would you like your password to contain lowercase letters?");
-  var allChar = '';
-  // Depending on the response do different things.
-  if (lowerCase) {
-    allChar += lowerCase();
-    allChar.push(lowerCase());
-    console.log(allChar);
-    return allChar;
-  } else {
-    return allChar;
-  } 
-  }
-  
+  var islowerCase = confirm("Click ok to confirm that password includes lower case");
+  var isupperCase = confirm("Click ok to confirm that password includes upper case");
+  var isNumeric = confirm("Click ok to confirm that password includes numerics");
+  var isSymbol= confirm("Click ok to confirm that password includes symbols ");
 
-  // function that adds upperCase
-  function upperCase() {
-  var upperCase = confirm("Would you like your password to contain uppercase letters?");
-  if (upperCase) {
-    allChar += upperCase(); 
-    allChar.push(upperCase());
-    return allChar;
-  } else {
-    return allChar;
-  }
-  }
+  // if case user don't select any character type
+  if (islowerCase === false && isupperCase === false && isNumeric === false && isSymbol === false) {
+    allChar = alert("select at least one criteria");
+    // if nothing choosen, return to the beginning of the function to start again
+    return generatePassword();
 
-  // function that adds numeric numbers
-  function numeric() {
-  var numeric = confirm("Would you like your password to contain numbers?");
-  if (numeric) {
-    allChar += numeric();
-    allChar.push(numeric());
-    return allChar;
-  } else {
-    return allChar;
-  }
-  }
+    // if user chooses all character types
+    } else if (islowerCase && isupperCase && isNumeric && isSymbol) {
+      allChar = lowerCase.concat(upperCase, numeric, symbol);
 
-  // function that adds symbols
-  function symbol() {
-  var symbol = confirm("Lastly, would you like your password to contain special characters?");
-  if (symbol) {
-    allChar += symbol();
-    allChar.push(symbol());
-    return allChar;
-  } else {
-    return allChar;
-  }
-  }
+    // if user chooses lower, upper and numeric
+    } else if (islowerCase && isupperCase && isNumeric) {
+      allChar = lowerCase.concat(upperCase, numeric);
 
-  // function that holds possible password characters and combinations
-  function findChar() {
-    lowerCase();
-    console.log(lowerCase());
-    upperCase();
-    console.log(upperCase());
-    numeric();
-    console.log(numeric());
-    symbol();
-    console.log(symbol());
+    // if user chooses lower, upper and symbol
+    } else if (islowerCase && isupperCase && isSymbol) {
+      allChar = lowerCase.concat(upperCase, symbol);
 
-  
-    if (allChar = '') {
-      window.alert("No password can not be generated if you don't choose to include at least 1 type of characters. Please try again.");
-    findChar();
-    } else {
+    // if user chooses lower, numeric and symbol
+    } else if (islowerCase && isNumeric && isSymbol) {
+      allChar = lowerCase.concat(numeric, symbol);
+
+    // if user chooses upper, numeric and symbol
+    } else if (isupperCase && isNumeric && isSymbol) {
+      allChar = upperCase.concat(numeric, symbol);
+
+    // if user chooses lower and upper
+    } else if (islowerCase && isupperCase) {
+      allChar = lowerCase.concat(upperCase);
+
+    // if user chooses lower and numeric
+    } else if (islowerCase && isNumeric) {
+      allChar = lowerCase.concat(numeric);
+
+    // if user chooses lower and symbol  
+    } else if (islowerCase && isSymbol) {
+      allChar = lowerCase.concat(symbol);
+
+    // if user chooses upper and numeric  
+    } else if (isupperCase && isNumeric) {
+      allChar = upperCase.concat(numeric);
+
+    // if user chooses upper and symbol  
+    } else if (isupperCase && isSymbol) {
+      allChar = upperCase.concat(symbol);
+
+    // if user chooses symbol and numeric  
+    } else if (isSymbol && isNumeric) {
+      allChar = symbol.concat(numeric);
+
+    // if user chooses upper only 
+    } else if (isupperCase) {
+      allChar = upperCase;
+
+    // if user chooses lower only  
+    } else if (islowerCase) {
+      allChar = lowerCase;
+
+    // if user chooses numeric only  
+    } else if (isNumeric) {
+      allChar = numeric;
+     
+    // if user chooses symbol only  
+    } else if (isSymbol) {
+      allChar = symbol;
     }
-  }   
 
-  findChar();
+  // variable that will store the random selection of characters after it's being made by the for loop
+  var finalRandomChar = [];
 
-  var allChar = findChar();
-  console.log(allChar);
-
-   // Generates password as long as the users chosen length
-  while (password < passwordLength) {
-    var password = '';
-    // Add on a random index from the characterPool string.
-    password += allChar[Math.floor(Math.random() * allChar.length)];
+  // randomizes allChar with user choosen length
+  for (var i = 0; i < passwordLength; i++) {
+      var makesRandomChar = allChar[Math.floor(Math.random() * allChar.length)];
+      finalRandomChar.push(makesRandomChar);
   }
-  // Return the password that was just made.
-  return password;
-}
-*/
+
+  // remove commas from the array characters to make proper result
+  var final = finalRandomChar.join("");
+  return final;
+};
+// end function generatePassword();
+
 
 //Get references to the #generate element
-//var generateBtn = document.querySelector("#generate");
+var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-//function writePassword() {
-  //var password = createPassword();
-  //var passwordText = document.querySelector("#password");
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
-  //passwordText.value = password;
+  passwordText.value = password;
 
-//}
+}
 
 // Add event listener to generate button
-//generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword);
