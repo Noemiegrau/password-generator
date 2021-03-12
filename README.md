@@ -1,4 +1,4 @@
-# **_Password Generator Starter Code_**
+# **_Password Generator_**
 
 ## **_Table of contents_**
 * [Description of the project](#description-of-the-project)
