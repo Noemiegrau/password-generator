@@ -12,7 +12,7 @@ function findPasswordLength () {
 
   var passwordLength = 0; 
 
-  // keep asking the length question until the answer is a number between 8 and 128 included
+  // keep asking the user to choose a length until the answer is a number between 8 and 128 included
   while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     passwordLength = 0;
     passwordLength = parseInt(prompt("How long would you like your password to be? Please enter a number between 8 and 128 characters included."));
