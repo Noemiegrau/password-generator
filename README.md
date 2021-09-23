@@ -21,7 +21,7 @@ Project is created using:
 ![03-javascript-homework-demo](https://user-images.githubusercontent.com/78329298/110250659-4b657f00-7f31-11eb-9869-34919cfd6577.png)
 
 ## **_Installation_**
-Here are some guidelines for installing the project on your local machine in order to be able to try it:
+Here are some guidelines for installing the project on your local machine:
 
 1. Clone or download the repository to your own local machine.
 
